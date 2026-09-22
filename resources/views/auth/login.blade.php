@@ -27,29 +27,25 @@
             <p class="mt-2 text-sm text-slate-400">
                 برای شروع گفتگو وارد حساب خود شوید
             </p>
-
         </div>
 
-
-        <!-- Login Card -->
         <div class="rounded-3xl border border-slate-800 bg-slate-900 p-6 shadow-2xl">
-
-            <form class="space-y-5">
-
+            <form
+                action="{{route('store')}}"
+                method="post"
+                class="space-y-5" >
+                @csrf
                 <x-inputs.input type="text" label="نام کاربر" name="name" />
-                <x-inputs.input type="password"/>
+                <x-inputs.input type="email" label="آدرس ایمیل" name="email" />
+                <x-inputs.input type="password" label="رمز عبور" name="password"/>
                 <button
                     type="submit"
                     class="w-full rounded-xl bg-purple-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-purple-500 active:scale-[0.98]"
                 >
                     ورود به حساب
                 </button>
-
             </form>
-
         </div>
-
-
         <p class="mt-6 text-center text-xs text-slate-600">
             سیستم چت Real-Time با Laravel و WebSocket
         </p>

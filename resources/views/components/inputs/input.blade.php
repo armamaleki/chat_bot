@@ -1,7 +1,7 @@
 <div>
 
     <label class="mb-2 block text-sm font-medium text-slate-300">
-        {{$label}}
+        {{$label}} @error($name) <span class="text-red-500 font-bold">{{$message}}</span>  @enderror
     </label>
 
     <input
