@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use App\Events\PublicMessages;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -33,6 +33,7 @@ class LoginController extends Controller
             }
             Auth::login($user);
             $request->session()->regenerate();
+            event(new  PublicMessages("کاربر $user->name لاگین کرد"));
             return redirect()->route('chat');
         }
         $user = User::create([
@@ -42,6 +43,7 @@ class LoginController extends Controller
         ]);
         Auth::login($user);
         $request->session()->regenerate();
+        event(new  PublicMessages("کاربر $user->name ثبت نام کرد"));
         return redirect()->route('chat');
     }
 }
