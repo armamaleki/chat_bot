@@ -47,110 +47,43 @@
 
         </header>
 
-
         <!-- Messages -->
         <div class="flex-1 overflow-y-auto bg-slate-950 px-5 py-6">
+            @if(request()->u )
 
+                <div id="messages" class="flex-1 overflow-y-auto bg-slate-950 px-5 py-6">
+                    @forelse($messages as $message)
+                        @if($message->user_id === auth()->id())
+                            <div class="mb-4 flex justify-start">
+                                <div class="rounded-2xl bg-purple-600 px-4 py-3">
+                                    {{ $message->body }}
+                                </div>
+                            </div>
+                        @else
+                            <div class="mb-4 flex justify-end">
+                                <div class="rounded-2xl bg-slate-800 px-4 py-3">
+                                    {{ $message->body }}
+                                </div>
+                            </div>
+                        @endif
+                    @empty
 
-            <!-- Date -->
-            <div class="mb-6 flex justify-center">
+                        <div class="flex h-full items-center justify-center text-slate-500">
+                            اولین پیامت رو بفرست 👋
+                        </div>
 
-                <span class="rounded-full bg-slate-900 px-4 py-1.5 text-[11px] text-slate-500">
-                    امروز
-                </span>
-
-            </div>
-
-
-            <!-- Received -->
-            <div class="mb-4 flex justify-start">
-
-                <div class="max-w-[75%]">
-
-                    <div class="rounded-2xl rounded-br-md border border-slate-800 bg-slate-900 px-4 py-3">
-
-                        <p class="text-sm leading-7 text-slate-200">
-                            سلام، خوبی؟
-                        </p>
-
-                    </div>
-
-                    <div class="mt-1 mr-1 text-[10px] text-slate-600">
-                        ۱۲:۴۲
-                    </div>
+                    @endforelse
 
                 </div>
-
-            </div>
-
-
-            <!-- Sent -->
-            <div class="mb-4 flex justify-end">
-
-                <div class="max-w-[75%]">
-
-                    <div class="rounded-2xl rounded-bl-md bg-purple-600 px-4 py-3">
-
-                        <p class="text-sm leading-7">
-                            سلام علی جان 👋
-                        </p>
-
-                    </div>
-
-                    <div class="mt-1 ml-1 text-left text-[10px] text-slate-600">
-                        ۱۲:۴۳ ✓✓
-                    </div>
+            @else
+                <div class="flex justify-center">
+                    برای ارسال پیام کلکی کنید
 
                 </div>
-
-            </div>
-
-
-            <!-- Received -->
-            <div class="mb-4 flex justify-start">
-
-                <div class="max-w-[75%]">
-
-                    <div class="rounded-2xl rounded-br-md border border-slate-800 bg-slate-900 px-4 py-3">
-
-                        <p class="text-sm leading-7 text-slate-200">
-                            می‌خواستم در مورد پروژه جدید باهات صحبت کنم.
-                        </p>
-
-                    </div>
-
-                    <div class="mt-1 mr-1 text-[10px] text-slate-600">
-                        ۱۲:۴۴
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- Sent -->
-            <div class="mb-4 flex justify-end">
-
-                <div class="max-w-[75%]">
-
-                    <div class="rounded-2xl rounded-bl-md bg-purple-600 px-4 py-3">
-
-                        <p class="text-sm leading-7">
-                            حتماً، بگو ببینم چه چیزی مدنظرت هست؟
-                        </p>
-
-                    </div>
-
-                    <div class="mt-1 ml-1 text-left text-[10px] text-slate-600">
-                        ۱۲:۴۵ ✓✓
-                    </div>
-
-                </div>
-
-            </div>
+            @endif
 
         </div>
-       <livewire:message-input />
+        <livewire:message-input  :user-id="request('u')"/>
     </main>
 
 @endsection

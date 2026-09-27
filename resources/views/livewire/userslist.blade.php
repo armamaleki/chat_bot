@@ -53,8 +53,9 @@
     </div>
     <div class="flex-1 overflow-y-auto px-3">
         @foreach($users as $user)
-            <div class="mb-1 flex cursor-pointer items-center gap-3 rounded-2xl hover:bg-purple-600/10 p-3">
-
+            <a
+                href="{{route('chat' , ['u'=>$user->id])}}"
+                class="mb-1 flex cursor-pointer items-center gap-3 rounded-2xl hover:bg-purple-600/10 p-3">
                 <div class="relative">
 
                     <div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-600 font-bold">
@@ -86,7 +87,7 @@
 
                 </div>
 
-            </div>
+            </a>
         @endforeach
 
     </div>

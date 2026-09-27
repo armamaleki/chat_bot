@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Message;
 use App\Models\User;
 use Livewire\Component;
 
